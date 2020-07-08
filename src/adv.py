@@ -50,7 +50,7 @@ is_playing = True
 # * Prints the current room name
 print(f"Chapter 1: When one journey ends... \n{player1.current_room.log_name()}")
 # * Prints the current description (the textwrap module might be useful here).
-for line in textwrap.wrap(player1.location.get_description()):
+for line in textwrap.wrap(player1.current_room.get_description()):
     print(line)
     
 while is_playing is True:
@@ -63,7 +63,7 @@ while is_playing is True:
     position = player1.current_room
     error = print("Can't go any further in this direction")
     if player_input.upper() == 'Q':
-        break
+        is_playing = False
     else:
         # Outside
         if position == room.keys()[0]:
