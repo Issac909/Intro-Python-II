@@ -1,4 +1,7 @@
 from room import Room
+from player import Player 
+
+import textwrap
 
 # Declare all the rooms
 
@@ -38,14 +41,69 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+print('I see you have chosen to start your adventure... I suppose that time comes for every child of light. My memory fails me at this time, please tell me, what is your name again?')
+player_name = input('☼ ')
+player1 = Player(f'{player_name}', room['outside'])
+is_playing = True
 # Write a loop that:
-#
+#   
 # * Prints the current room name
+print(f"Chapter 1: When one journey ends... \n{player1.current_room.log_name()}")
 # * Prints the current description (the textwrap module might be useful here).
+for line in textwrap.wrap(player1.location.get_description()):
+    print(line)
+    
+while is_playing is True:
+    print(f"Welcome {player1.name}. This is no normal cave, we are standing outside a seeker church, or as we say, 'Church of Traitors'. Just look around and see if you can find any clues. The greedy mongrols may have left some treasure behind as well, finders keepers!")
+    player_input = input(f"Use [W, A, S, D] to navigate between rooms. Press W now to move into {room['foyer']}. You can quit any time pressing 'Q'")
 # * Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
+# Print an error message if the movement isn't allowed
+    position = player1.current_room
+    error = print("Can't go any further in this direction")
+    if player_input.upper() == 'Q':
+        break
+    else:
+        # Outside
+        if position == room.keys()[0]:
+            if player_input.upper() == 'W':
+                position = room['outside'].n_to
+            else:
+                error
+        # Foyer 
+        elif position == room.keys()[1]:
+            if player_input.upper() == 'W':
+                position = room['foyer'].n_to
+            elif player_input.upper() == 'S':
+                position = room['foyer'].s_to
+            elif player_input.upper() == 'D':
+                position = room['foyer'].e_to
+            else:
+                error
+        # Overlook    
+        elif position == room.keys()[2]:
+            if player_input.upper() == 'S':
+                position = room['overlook'].s_to
+            elif player_input.upper() == 'D':
+                error
+            else:
+                error
+        # Narrow        
+        elif position == room.keys()[3]:
+            if player_input.upper() == 'W':
+                position = room['narrow'].n_to
+            elif player_input.upper() == 'A':
+                position = room['narrow'].w_to
+            else:
+                error
+        # Treasure    
+        elif position == room.keys()[4]:
+            if player_input.upper() == 'S':
+                position = room['treasure'].s_to
+            else:
+                error
+        else:
+            error
+
 # If the user enters "q", quit the game.
