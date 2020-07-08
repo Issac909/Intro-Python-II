@@ -85,8 +85,6 @@ while is_playing is True:
         elif position == room.keys()[2]:
             if player_input.upper() == 'S':
                 position = room['overlook'].s_to
-            elif player_input.upper() == 'D':
-                error
             else:
                 error
         # Narrow        
