@@ -15,9 +15,9 @@ class Room:
         
     def __str__(self):
         if len(self.items) > 0:
-            return f"Room Info: {self.room_name}\n{self.description} \nItem: {self.items[0]}"
+            return f"Room Info: {self.room_name}\n{self.description} \nItem: {self.items[0]}\n"
         else:
-            return f"Room Info: {self.room_name}\n{self.description} \nItem: None"
+            return f"Room Info: {self.room_name}\n{self.description} \nItem: None\n"
             
     def item_spawn(self, spawn):
         return self.items.append(spawn)

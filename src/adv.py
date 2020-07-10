@@ -84,7 +84,7 @@ time.sleep(1)
 player1 = Player(f'{player_name}', room['outside'])
 scene1(player_name)
 time.sleep(1)
-player_input = input("\t\tControls: [W]North, [A]West, [S]South, [D]East | Options: [I]Inventory [R]Room Info [H]Help [Q]Quit\n")
+player_input = input("Ready? (Y) or (Q)")
 # Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
@@ -95,7 +95,8 @@ while player_input.upper() != 'Q':
     player_input = input("\t\tControls: [W], [A], [S], [D] | Options: [I] [E] [R] [H] | Quit = [Q]\n")
     try:
         if player_input.upper()  == 'H':
-            player_input = input(f"\nUse ['W'(North), 'A'(West), 'S'(South), 'D'(East)] to navigate between rooms. \nCheck room info with [R] and pick up items with [E]. \nYou can quit any time pressing 'Q'. For help, (to see this message again) press 'H'\n")
+            player_input = input(f"\nUse ['W'(North), 'A'(West), 'S'(South), 'D'(East)] to navigate between rooms. \nCheck room info with [R] and pick up items with [E]. You can quit any time \npressing 'Q'. For help, (to see this message again) press 'H'\nPress 'B' to go back to the game.\n")
+            continue
         elif player_input.upper() == 'R':
             delay_print(f"{player1.current_room}")
             continue
